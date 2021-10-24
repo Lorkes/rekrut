@@ -10,7 +10,7 @@ class Cat(models.Model):
     cat_owner = models.ForeignKey(User, on_delete=models.CASCADE)
     cat_name = models.CharField(max_length=100)
     cat_coloration = models.CharField(max_length=200)
-    cat_sex = models.CharField(max_length=1, choices=[('M', 'Male'), ('F', 'Female')], default='M')
+    cat_sex = models.BooleanField(choices=[(True, '✅'), (False, '❌')], default=True)
 
 
 class Hunting(models.Model):
