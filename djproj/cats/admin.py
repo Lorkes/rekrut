@@ -3,7 +3,7 @@ from .models import User, Cat, Hunting
 
 
 class CatAdmin(admin.ModelAdmin):
-    readonly_fields = ('cat_sex',)
+    readonly_fields = ('cat_male',)
 
 
 admin.site.register(User)
