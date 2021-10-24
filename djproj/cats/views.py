@@ -1,11 +1,14 @@
 from rest_framework.response import Response
-from .models import User, Cat, Hunting
 from rest_framework.decorators import api_view
+
+from .models import User, Cat, Hunting
+from .serializers import HuntingSerializer
 
 
 @api_view()
 def list_users(request):
     return Response({f'User {user.id}': user.user_total_cats for user in User.objects.all()})
+
 
 @api_view(['GET'])
 def user_cats(request, user_id):
@@ -19,3 +22,13 @@ def user_cats(request, user_id):
     })
 
 
+@api_view(['GET', 'POST'])
+def add_hunting(request):
+    if request.method == 'GET':
+        return Response({"method_error": 'This is the POST endpoint. Please provide new hunting data.'})
+    hunt = HuntingSerializer(data=request.data)
+    if hunt.is_valid():
+        hunt.save()
+        return Response({"message": "Hunting successfully saved."})
+    else:
+        return Response(status=400)

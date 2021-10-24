@@ -25,7 +25,7 @@ class Cat(models.Model):
 
 
 class Hunting(models.Model):
-    cat_went = models.ForeignKey(Cat, on_delete=models.CASCADE)
+    cat_id = models.ForeignKey(Cat, on_delete=models.CASCADE)
     hunting_duration = models.IntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(72)]) # 1 hour - 3 days
     hunting_prey = models.CharField(max_length=100)
 
