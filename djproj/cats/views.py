@@ -7,12 +7,13 @@ from .serializers import HuntingSerializer
 
 @api_view()
 def list_users(request):
-    return Response({f'User {user.id}': user.user_total_cats for user in User.objects.all()})
+    return Response({f'{user.id}': {"Name": f"{user.user_name}",
+                                    "Total cats": user.user_total_cats} for user in User.objects.all()})
 
 
 @api_view(['GET'])
 def user_cats(request, user_id):
-    cats = [[c.cat_name, c.cat_coloration, c.cat_male, Hunting.objects.filter(cat_went=c.id).count()]
+    cats = [[c.cat_name, c.cat_coloration, c.cat_male, Hunting.objects.filter(cat_id=c.id).count()]
             for c in Cat.objects.filter(cat_owner_id=user_id)]
     cat_fields = ['Name', 'Coloration', 'Male', 'Hunts']
     return Response({
