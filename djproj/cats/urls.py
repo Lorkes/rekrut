@@ -9,5 +9,5 @@ urlpatterns = [
     path('', include(router.urls)),
     path('users/', views.list_users),
     path('users/<int:user_id>', views.user_cats),
-    path('huntings/new', views.add_hunting)
+    path('hunts/new', views.add_hunting)
 ]

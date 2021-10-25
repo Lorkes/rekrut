@@ -14,7 +14,7 @@ def list_users(request):
 def user_cats(request, user_id):
     cats = [[c.cat_name, c.cat_coloration, c.cat_male, Hunting.objects.filter(cat_went=c.id).count()]
             for c in Cat.objects.filter(cat_owner_id=user_id)]
-    cat_fields = ['Name', 'Coloration', 'Male', 'Huntings']
+    cat_fields = ['Name', 'Coloration', 'Male', 'Hunts']
     return Response({
         'User_id': user_id,
         'User': User.objects.filter(id=user_id)[0].user_name,
